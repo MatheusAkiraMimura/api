@@ -11,10 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('especialidades', function (Blueprint $table) {
+        Schema::create('crud_simples', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->boolean('inactive')->default(false);
+            $table->string('nome');
+            $table->string('email');
+            $table->date('data_campo');
+            $table->string('celular');
+            $table->string('classificacao');
+            $table->text('observacao')->nullable();
+            $table->text('conhecimentos')->nullable();
+            $table->string('nivel');
             $table->string('identificadorUser');
             $table->timestamps();
         });
@@ -25,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('especialidades');
+        Schema::dropIfExists('crud_simples');
     }
 };

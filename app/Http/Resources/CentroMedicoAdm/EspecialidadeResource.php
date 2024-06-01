@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\CentroMedicoAdm;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -18,6 +18,7 @@ class EspecialidadeResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'inactive' => $this->inactive,
+            'identificadorUser' => $this->identificadorUser,
             'created_at' => $this->created_at
         ];
     }

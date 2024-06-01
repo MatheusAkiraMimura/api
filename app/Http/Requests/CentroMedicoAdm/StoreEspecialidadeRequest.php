@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\CentroMedicoAdm;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -24,7 +24,8 @@ class StoreEspecialidadeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'max:70']
+            'name' => ['required', 'max:70'],
+            'identificadorUser' => ['required', 'max:255']
         ];
     }
 }
