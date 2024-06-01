@@ -3,57 +3,42 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Contato;
+use App\Http\Requests\StoreContatoRequest;
+use App\Http\Resources\ContatoResource;
+use App\Services\ContatoService;
 use Illuminate\Http\Request;
 
 class ContatoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    protected $ContatoService;
+
+    public function __construct(ContatoService $ContatoService)
+    {
+        $this->ContatoService = $ContatoService;
+    }
+
     public function index()
     {
-        return Contato::all();
+        $contatos = $this->ContatoService->getAllContatos();
+        return ContatoResource::collection($contatos);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function store(StoreContatoRequest $request)
     {
-        $validatedData = $request->validate([
-            'mensagem' => 'required|string|max:500',
-            'identificadorUser' => 'required|string|email|max:255',
-        ]);
-
-        $contato = Contato::create($validatedData);
-
-        return response()->json($contato, 201);
+        $contato = $this->ContatoService->createContato($request->validated());
+        return new ContatoResource($contato);
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(string $id)
     {
-        $contato = Contato::findOrFail($id);
-        return response()->json($contato);
+        $contato = $this->ContatoService->getContatoById($id);
+        return new ContatoResource($contato);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
     {
-        $validatedData = $request->validate([
-            'mensagem' => 'sometimes|required|string|max:500',
-            'email' => 'sometimes|required|string|email|max:255',
-        ]);
-
-        $contato = Contato::findOrFail($id);
-        $contato->update($validatedData);
-
-        return response()->json($contato);
+        $contato = $this->ContatoService->updateContato($request->validated(), $id);
+        return new ContatoResource($contato);
     }
 
     /**
@@ -61,9 +46,7 @@ class ContatoController extends Controller
      */
     public function destroy(string $id)
     {
-        $contato = Contato::findOrFail($id);
-        $contato->delete();
-
-        return response()->json(null, 204);
+        $this->ContatoService->deleteContato($id);
+        return response(null, 204);
     }
 }
