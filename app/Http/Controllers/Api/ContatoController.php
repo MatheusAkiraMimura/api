@@ -5,8 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreContatoRequest;
 use App\Http\Resources\ContatoResource;
-use App\Services\ContatoService;
-use Illuminate\Http\Request;
+use App\Services\ContatoService; 
 
 class ContatoController extends Controller
 {
@@ -35,15 +34,12 @@ class ContatoController extends Controller
         return new ContatoResource($contato);
     }
 
-    public function update(Request $request, string $id)
+    public function update(StoreContatoRequest $request, string $id)
     {
         $contato = $this->ContatoService->updateContato($request->validated(), $id);
         return new ContatoResource($contato);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
         $this->ContatoService->deleteContato($id);
