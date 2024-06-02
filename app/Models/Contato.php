@@ -11,6 +11,7 @@ class Contato extends Model
 
     protected $fillable = [
         'mensagem', 
-        'identificadorUser'
+        'identificadorUser',
+        'sendTo',
     ];
 }

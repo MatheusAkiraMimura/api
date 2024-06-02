@@ -2,18 +2,22 @@
 
 namespace App\Providers;
 
+use App\Interfaces\IRepositories\CandidateRepositoryInterface;
 use App\Interfaces\IRepositories\CentroMedicoAdm\EspecialidadeRepositoryInterface;
 use App\Interfaces\IRepositories\ContatoRepositoryInterface;
 use App\Interfaces\IRepositories\CRUDRepositoryInterface;
 use App\Interfaces\IRepositories\UploadImagemRepositoryInterface;
+use App\Interfaces\IServices\CandidateServiceInterface;
 use App\Interfaces\IServices\CentroMedicoAdm\EspecialidadeServiceInterface;
 use App\Interfaces\IServices\ContatoServiceInterface;
 use App\Interfaces\IServices\CRUDServiceInterface;
 use App\Interfaces\IServices\UploadImagemServiceInterface;
+use App\Repositories\CandidateRepository;
 use App\Repositories\CentroMedicoAdm\EspecialidadeRepository;
 use App\Repositories\ContatoRepository;
 use App\Repositories\CRUDRepository;
 use App\Repositories\UploadImagemRepository;
+use App\Services\CandidateService;
 use App\Services\CentroMedicoAdm\EspecialidadeService;
 use App\Services\ContatoService;
 use App\Services\CRUDService;
@@ -38,6 +42,9 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->bind(UploadImagemRepositoryInterface::class, UploadImagemRepository::class);
         $this->app->bind(UploadImagemServiceInterface::class, UploadImagemService::class);
+
+        $this->app->bind(CandidateRepositoryInterface::class, CandidateRepository::class);
+        $this->app->bind(CandidateServiceInterface::class, CandidateService::class);
     }
 
     /**

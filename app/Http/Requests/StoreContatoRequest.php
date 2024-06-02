@@ -25,7 +25,8 @@ class StoreContatoRequest extends FormRequest
     {
         return [
             'mensagem' => ['required', 'max:500'],
-            'identificadorUser' => ['required', 'max:255']
+            'identificadorUser' => ['required', 'max:255'],
+            'sendTo' => ['required', 'max:255'],
         ];
     }
 }

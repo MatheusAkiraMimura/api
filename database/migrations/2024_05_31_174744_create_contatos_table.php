@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('mensagem');
             $table->string('identificadorUser');
+            $table->string('sendTo');
             $table->timestamps();
         });
     }

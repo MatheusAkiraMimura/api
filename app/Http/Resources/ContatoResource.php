@@ -18,6 +18,7 @@ class ContatoResource extends JsonResource
             'id' => $this->id,
             'mensagem' => $this->mensagem,
             'identificadorUser' => $this->identificadorUser,
+            'sendTo' => $this->sendTo,
             'created_at' => $this->created_at
         ];
     }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\CandidateController;
 use App\Http\Controllers\Api\CentroMedicoAdm\EspecialidadeController;
 use App\Http\Controllers\Api\ContatoController;
 use App\Http\Controllers\Api\CrudController;
@@ -26,3 +27,6 @@ Route::apiResource('crud', CrudController::class);
 Route::apiResource('contato', ContatoController::class)->except([
     'create', 'edit'
 ]);
+
+Route::apiResource('candidates', CandidateController::class);
+Route::get('candidates/{id}/pdf', [CandidateController::class, 'generatePdf']);
